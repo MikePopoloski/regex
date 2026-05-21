@@ -84,8 +84,11 @@ inline void raise_runtime_error(const E& ex)
 {
 #ifndef BOOST_REGEX_STANDALONE
    ::boost::throw_exception(ex);
-#else
+#elif !defined(BOOST_NO_EXCEPTIONS)
    throw ex;
+#else
+   fprintf(stderr, "%s\n", ex.what());
+   std::abort();
 #endif
 }
 
