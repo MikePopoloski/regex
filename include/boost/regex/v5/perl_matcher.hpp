@@ -43,8 +43,10 @@
 
 #ifndef BOOST_REGEX_STANDALONE
 #  define BOOST_REGEX_DETAIL_THROW(ex) boost::throw_exception(ex)
-#else
+#elif !defined(BOOST_NO_EXCEPTIONS)
 #  define BOOST_REGEX_DETAIL_THROW(ex) throw ex
+#else
+#  define BOOST_REGEX_DETAIL_THROW(ex) do { fprintf(stderr, "%s\n", ex.what()); std::abort(); } while (0)
 #endif
 
 namespace boost{
