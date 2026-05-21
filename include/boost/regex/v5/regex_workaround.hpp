@@ -140,19 +140,6 @@ namespace boost{ namespace BOOST_REGEX_DETAIL_NS{
 
 #endif
 
-   inline void overflow_error_if_not_zero(std::size_t i)
-   {
-      if(i)
-      {
-         std::overflow_error e("String buffer too small");
-#ifndef BOOST_REGEX_STANDALONE
-         boost::throw_exception(e);
-#else
-         throw e;
-#endif
-      }
-   }
-
 }} // namespaces
 
 #endif // __cplusplus
